@@ -8,8 +8,7 @@ class TestDb(unittest.TestCase):
   def setUp(self):
     '''function that sets up for testing '''
     self.db = DB()
-    self.conn = self.db.connect()
-    self.cursor = self.conn.cursor()
+
 
   def test_connect(self):
     '''function that tests the connect function'''
@@ -24,12 +23,15 @@ class TestDb(unittest.TestCase):
   def test_setup(self):
     '''function that tests the setup function'''
     self.assertEqual(self.db.setup(), None)
+    cursor = self.db.new_connect().cursor()
+    query=cursor.execute('SELECT url FROM pages WHERE id=1 ')
+    self.assertEqual(query, None)
 
   def test_seed(self):
     '''function that tests the seed function'''
-    self.db.setup()
-    seed = self.db.seed()
-    self.assertIsNotNone(seed)
+    # self.db.setup()
+    # seed = self.db.seed()
+    # self.assertIsNotNone(seed)
 
 
   def tearDown(self):
