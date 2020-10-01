@@ -13,12 +13,12 @@ class TestDb(unittest.TestCase):
   def test_connect(self):
     '''function that tests the connect function'''
     connection_object = self.db.connect()
-    self.assertIsNotNone(connection_object)
+    self.assertIsNone(connection_object)
 
   def test_new_connect(self):
     '''function that tests the new_connect function'''
     connection_object = self.db.new_connect()
-    self.assertIsNotNone(connection_object)
+    self.assertIsNone(connection_object)
 
   def test_setup(self):
     '''function that tests the setup function'''
