@@ -28,7 +28,7 @@ jobs:
         postgresql password: "W4zxODUppbwV3dZ8kiPXR1pgrl6pSy7L"
     - name: Test package
       env:
-          POSTGRES_HOST : lallah.db.elephantsql.com (lallah-01)
+          POSTGRES_HOST : lallah.db.elephantsql.com
           POSTGRES_PORT : 5432
           POSTGRES_DB : mgwmanfz
           POSTGRES_USER : mgwmanfz
