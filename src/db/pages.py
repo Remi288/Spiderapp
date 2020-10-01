@@ -7,7 +7,7 @@ class Pages:
 
   def select(self):
     ''' function that select id and url from page table'''
-    self.cursor.execute('SELECT id,url FROM Pages')
+    self.cursor.execute('SELECT id, url FROM pages')
     record = self.cursor.fetchall()
     return record
 
