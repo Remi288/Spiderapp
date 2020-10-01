@@ -13,6 +13,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    service:
+      postgres:
+        image: postgres:12-alphine
+        env:
+          POSTGRES_USER: post
     strategy:
       matrix:
         python-version: [3.8]
@@ -37,3 +42,9 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest
+      env:
+        DB_HOST=localhost
+        DB_PORT=5432
+        DB_NAME=scraperdb
+        DB_USER=postgres
+        DB_PASSWORD=12345

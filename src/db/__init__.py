@@ -44,14 +44,7 @@ class DB:
         user=config('DB_USER'),
         password=config('DB_PASSWORD'),
         port=config('DB_PORT', cast=int))
-      # cursor = conn.cursor()
-      # cursor.execute('''DROP DATABASE IF EXISTS scraperdb''')
-      # cursor.execute('''CREATE DATABASE scraperdb''')
-      #
 
-      # cur = conn.cursor()
-      # self.cur = cur
-      # self.conn = conn
       conn.autocommit = True
       return conn
     except (psycopg2.Error) as err:
@@ -62,7 +55,7 @@ class DB:
   def setup(cls):
     connect = DB().new_connect()
     cur = connect.cursor()
-    with open('/Users/user/PycharmProjects/week-8-task-python-Remi288/src/schemas/structure.sql') as s:
+    with open('src/schemas/structure.sql') as s:
       sql_script = s.readlines()
       for line in sql_script:
         cur.execute(line)
@@ -75,7 +68,7 @@ class DB:
   def seed(cls):
     connect = DB().new_connect()
     cur = connect.cursor()
-    with open('/Users/user/PycharmProjects/week-8-task-python-Remi288/src/schemas/seed.sql') as ss:
+    with open('src/schemas/seed.sql') as ss:
       sql_script = ss.readlines()
       for line in sql_script:
         cur.execute(line)
@@ -96,12 +89,7 @@ class DB:
 
   @classmethod
   def pages(cls):
-    # Returns a reference to the pages interface
-    pages = Pages(cls.new_connect())
+    # Returns a referslence to the pages interface
+    result = cls.new_connect()
+    pages = Pages(result)
     return pages
-# db = DB()
-# db.connect()
-# db.new_connect()
-# db.setup()
-# db.seed()
-# page = db.pages(1)

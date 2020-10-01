@@ -1,6 +1,6 @@
 # Ignore necessary files and folders
 
 .idea/
-.env
+.env.sample
 venv/
 __pycache__/

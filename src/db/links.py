@@ -2,18 +2,20 @@
 
 
 class Links:
+  ''' class that handle the link table in the database interface
+  insert function insert all id, url, page-id in the link table
+  select function select all the id, url form the link table
+  delect function delect all values from the link table
+  '''
 
 
-  def __int__(self, connect):
+  def __init__(self, connect):
     self.connection = connect
     self.cursor = self.connection.cursor()
 
   def insert(self, id, page_id, url):
-    self.cursor.execute("INSERT INTO table (id,page_id,url) VALUES ( %s, %s, %s)", (id,page_id,url))
+    self.cursor.execute("INSERT INTO links (id,page_id,url) VALUES ( %s, %s, %s)", (id,page_id,url))
     self.connection.commit()
-
-
-
 
 
 
@@ -26,7 +28,7 @@ class Links:
 
   def delete(self):
     self.cursor.execute('DELETE FROM links')
-    self.connect.commit()
+    self.connection.commit()
 
 
 

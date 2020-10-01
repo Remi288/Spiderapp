@@ -29,9 +29,9 @@ class TestDb(unittest.TestCase):
 
   def test_seed(self):
     '''function that tests the seed function'''
-    # self.db.setup()
-    # seed = self.db.seed()
-    # self.assertIsNotNone(seed)
+    self.db.setup()
+    seed = self.db.seed()
+    self.assertIsNone(seed)
 
 
   def tearDown(self):
