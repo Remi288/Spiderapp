@@ -3,8 +3,6 @@ from src.db import DB
 from src.spider import spider_scrap
 from celery import Celery
 from decouple import config
-
-
 #
 db = DB()
 db.connect()
