@@ -1,4 +1,4 @@
-[12:00 AM] Obiako Oluchukwu Vivian
+
 
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
@@ -23,16 +23,16 @@ jobs:
     - name: Setup PostgreSQL
       uses: Harmon758/postgresql-action@v1.0.0
       with:
-        postgresql db:     rkpvemlx
-        postgresql user: rkpvemlx
-        postgresql password: "1Wan_I6laODVrrRHG0j6qWQxKh23Pjtl"
+        postgresql db: mgwmanfz
+        postgresql user: mgwmanfz
+        postgresql password: "W4zxODUppbwV3dZ8kiPXR1pgrl6pSy7L"
     - name: Test package
       env:
-          POSTGRES_HOST : lallah.db.elephantsql.com
+          POSTGRES_HOST : lallah.db.elephantsql.com (lallah-01)
           POSTGRES_PORT : 5432
-          POSTGRES_DB : rkpvemlx
-          POSTGRES_USER : rkpvemlx
-          POSTGRES_PASSWORD : "1Wan_I6laODVrrRHG0j6qWQxKh23Pjtl"
+          POSTGRES_DB : mgwmanfz
+          POSTGRES_USER : mgwmanfz
+          POSTGRES_PASSWORD : "W4zxODUppbwV3dZ8kiPXR1pgrl6pSy7L"
       run:
         python -m unittest
 
