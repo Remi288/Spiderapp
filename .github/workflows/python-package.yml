@@ -13,11 +13,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    service:
+    services:
       postgres:
         image: postgres:12-alphine
         env:
-          POSTGRES_USER: post
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 12345
+          POSTGRES_DB: scraperdb
     strategy:
       matrix:
         python-version: [3.8]
@@ -43,8 +45,8 @@ jobs:
       run: |
         python -m unittest
       env:
-        DB_HOST=localhost
-        DB_PORT=5432
-        DB_NAME=scraperdb
-        DB_USER=postgres
-        DB_PASSWORD=12345
+        DB_HOST: localhost
+        DB_PORT: 5432
+        DB_NAME: scraperdb
+        DB_USER: postgres
+        DB_PASSWORD: 12345
