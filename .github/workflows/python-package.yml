@@ -1,0 +1,37 @@
+
+
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+name: New Workflows
+on: [ push ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Setup PostgreSQL
+      uses: Harmon758/postgresql-action@v1.0.0
+      with:
+        postgresql db: mgwmanfz
+        postgresql user: mgwmanfz
+        postgresql password: "W4zxODUppbwV3dZ8kiPXR1pgrl6pSy7L"
+    - name: Test package
+      env:
+          POSTGRES_HOST : lallah.db.elephantsql.com
+          POSTGRES_PORT : 5432
+          POSTGRES_DB : mgwmanfz
+          POSTGRES_USER : mgwmanfz
+          POSTGRES_PASSWORD : "W4zxODUppbwV3dZ8kiPXR1pgrl6pSy7L"
+      run:
+        python -m unittest
