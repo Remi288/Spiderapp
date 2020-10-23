@@ -32,11 +32,12 @@ def spider_scrap(page_id):
       links_list.append(links)
   link_url = links_list[:10]
 
-  DB.links().delete()
+  DB.links().delete(page_id)
 
 #saves the newly extratcted links to the database for the page
-  for i in range(len(link_url)):
-    DB.links().insert(i+1, page_id, link_url[i])
+  for url in link_url:
+    DB.links().insert(page_id, url)
 
+  DB().pages().update_id_false(page_id)
 
-print(spider_scrap(1))
+# print(spider_scrap(1))

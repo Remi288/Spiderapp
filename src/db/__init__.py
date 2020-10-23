@@ -8,48 +8,39 @@ from src.db.pages import Pages
 
 
 class DB:
-
   @classmethod
   def connect(cls):
-    '''Function that Connects to the server,
-       drops database if it exists and creates database
-       Returns a connection object
-    '''
     try:
-      print(config('POSTGRES_PASSWORD'))
       connection = psycopg2.connect(
-        dbname=None,
-        port=config('POSTGRES_PORT', cast=int),
-        host=config('POSTGRES_HOST'),
-        password=config('POSTGRES_PASSWORD'),
-        user=config('POSTGRES_USER')
+         host=config('DB_HOST'),
+         database=None,
+         port=config('DB_PORT')
       )
       connection.autocommit = True
       cursor = connection.cursor()
-      cursor.execute(f'''DROP DATABASE IF EXISTS {config("POSTGRES_DB")}''')
-      cursor.execute(f'''CREATE DATABASE {config("POSTGRES_DB")}''')
+      # cursor.execute("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'scraperdb'")
+      cursor.execute('DROP DATABASE IF EXISTS scraperdb')
+      cursor.execute('CREATE DATABASE scraperdb')
       return connection
-    except (Exception, psycopg2.Error) as error:
-      print('Error while connecting to PostgreSQL', error)
+    except psycopg2.Error as e:
+      print('Error occurred while trying to connect to postgreSQL', e)
+
+
 
   @classmethod
   def new_connect(cls):
-    '''Function that Connects to the database,
-        Returns a connection object
-    '''
-    # cls.connect()
     try:
       connection = psycopg2.connect(
-        dbname=config('POSTGRES_DB'),
-        port=config('POSTGRES_PORT', cast=int),
-        host=config('POSTGRES_HOST'),
-        user=config('POSTGRES_USER'),
-        password=config('POSTGRES_PASSWORD')
+        host=config('DB_HOST'),
+        database=config('DB_NAME'),
+        port=config('DB_PORT', cast=int),
+        user=config('DB_USER'),
+        password=('DB_PASSWORD')
       )
       connection.autocommit = True
       return connection
-    except (Exception, psycopg2.Error) as error:
-      print('Error while connecting to PostgreSQL', error)
+    except (Exception, psycopg2.Error) as e:
+      print('Error while connecting to PostgreSQL', e)
 
   @classmethod
   def setup(cls):

@@ -13,7 +13,7 @@ class TestDb(unittest.TestCase):
   def test_connect(self):
     '''function that tests the connect function'''
     connection_object = self.db.connect()
-    self.assertIsNone(connection_object)
+    self.assertIsNotNone(connection_object)
 
   def test_new_connect(self):
     '''function that tests the new_connect function'''

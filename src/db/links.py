@@ -13,21 +13,21 @@ class Links:
     self.connection = connect
     self.cursor = self.connection.cursor()
 
-  def insert(self, id, page_id, url):
-    self.cursor.execute("INSERT INTO links (id,page_id,url) VALUES ( %s, %s, %s)", (id,page_id,url))
+  def insert(self, page_id, url):
+    self.cursor.execute("INSERT INTO links (page_id,url) VALUES ( %s, %s)", (page_id,url))
     self.connection.commit()
 
 
 
   def select(self, page_id):
-    self.cursor.execute('SELECT id,url FROM links')
+    self.cursor.execute('SELECT * FROM links WHERE page_id=%s', (page_id,))
     record = self.cursor.fetchall()
     return record
 
 
 
-  def delete(self):
-    self.cursor.execute('DELETE FROM links')
+  def delete(self, page_id):
+    self.cursor.execute('DELETE FROM links WHERE id=%s', (page_id,))
     self.connection.commit()
 
 

@@ -17,16 +17,20 @@ print(pages.select())
 print(pages.find(2))
 # print(pages.update_id(1))
 links = DB.links()
-# print(links.insert())
-# print(links.delete())
+print(links.insert(1, 'www.goggle.com'))
+print(links.delete(1))
 print(links.select(1))
+# #
+# app = Celery('main', broker=config('CELERY_BROKER'), backend=config('CELERY_BACKEND'))
+#
+#
+# @app.task
+# def scrap_url():
+#   return spider_scrap(1)
 
-app = Celery('main', broker=config('CELERY_BROKER'), backend=config('CELERY_BACKEND'))
 
+# spider_scrap(1)
 
-@app.task
-def scrap_url():
-  return spider_scrap(1)
 
 
 
